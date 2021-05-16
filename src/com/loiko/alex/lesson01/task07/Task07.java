@@ -1,13 +1,13 @@
 package com.loiko.alex.lesson01.task07;
 
+import com.loiko.alex.lesson01.exception.UnacceptableValueException;
+
+import java.util.Scanner;
+
 /**
  * @author Alexey Loiko
  * @project jwd-epam-study
  */
-
-import com.loiko.alex.lesson01.exception.UnacceptableValueException;
-
-import java.util.Scanner;
 
 /**
  * Даны две точки: А и В. Найти, какая из точек находится ближе к началу координат

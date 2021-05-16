@@ -1,14 +1,14 @@
 package com.loiko.alex.lesson01;
 
-/**
- * @author Alexey Loiko
- * @project jwd-epam-study
- */
-
 import com.loiko.alex.lesson01.exception.NotNumberException;
 import com.loiko.alex.lesson01.exception.UnacceptableValueException;
 
 import java.util.Scanner;
+
+/**
+ * @author Alexey Loiko
+ * @project jwd-epam-study
+ */
 
 /**
  * Вычислить значение функции F(x) на отрезке [a, b] с шагом h. Результат представить в виде таблицы,

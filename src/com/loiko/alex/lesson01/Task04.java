@@ -1,14 +1,13 @@
 package com.loiko.alex.lesson01;
 
+import com.loiko.alex.lesson01.util.CheckInputNumber;
+
+import java.util.Scanner;
+
 /**
  * @author Alexey Loiko
  * @project jwd-epam-study
  */
-
-import com.loiko.alex.lesson01.exception.NotNumberException;
-import com.loiko.alex.lesson01.util.CheckInputNumber;
-
-import java.util.Scanner;
 
 /**
  * Составить программу, печатающую true, если указанное высказывание истинно, и false, если оно ложно

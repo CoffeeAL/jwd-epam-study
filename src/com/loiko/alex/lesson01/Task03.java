@@ -1,13 +1,13 @@
 package com.loiko.alex.lesson01;
 
+import com.loiko.alex.lesson01.exception.UnacceptableValueException;
+
+import java.util.Scanner;
+
 /**
  * @author Alexey Loiko
  * @project jwd-epam-study
  */
-
-import com.loiko.alex.lesson01.exception.UnacceptableValueException;
-
-import java.util.Scanner;
 
 /**
  * Окружность вписана в квадрат заданной площади. Найти площадь квадрата, вписанного в эту окружность.

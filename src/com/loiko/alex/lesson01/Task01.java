@@ -1,14 +1,14 @@
 package com.loiko.alex.lesson01;
 
-/**
- * @author Alexey Loiko
- * @project jwd-epam-study
- */
-
 import com.loiko.alex.lesson01.exception.UnacceptableValueException;
 import com.loiko.alex.lesson01.util.CheckInputNumber;
 
 import java.util.Scanner;
+
+/**
+ * @author Alexey Loiko
+ * @project jwd-epam-study
+ */
 
 /**
  * Написать программу, позволяющую по последней цифре числа определить последнюю цифру его квадрата
