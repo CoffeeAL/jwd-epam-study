@@ -1,6 +1,6 @@
 package com.loiko.alex.lesson01;
 
-import com.loiko.alex.lesson01.util.CheckInputNumber;
+import com.loiko.alex.lesson01.util.InputNumberFactory;
 
 import java.util.Scanner;
 
@@ -18,15 +18,14 @@ import java.util.Scanner;
 public class Task05 {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int value = readInput(scanner);
+        int value = readInput();
         printReport(value);
     }
 
-    private static int readInput(Scanner scanner) {
-        System.out.println("Введите целое число: ");
-        CheckInputNumber.checkInputInteger(scanner);
-        return scanner.nextInt();
+    private static int readInput() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Пожалуйста, введите целое число: ");
+        return InputNumberFactory.getInt(scanner);
     }
 
     private static boolean isAssertionTrue(int value) {
@@ -44,10 +43,7 @@ public class Task05 {
     }
 
     private static int castToPositiveValue(int value) {
-        if (value < 0) {
-            value = -value;
-        }
-        return value;
+        return Math.abs(value);
     }
 
     private static void printReport(int value) {

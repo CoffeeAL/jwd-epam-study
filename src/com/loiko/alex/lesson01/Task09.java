@@ -1,6 +1,6 @@
 package com.loiko.alex.lesson01;
 
-import com.loiko.alex.lesson01.exception.UnacceptableValueException;
+import com.loiko.alex.lesson01.util.InputNumberFactory;
 
 import java.util.Scanner;
 
@@ -24,21 +24,7 @@ public class Task09 {
     private static double readInput() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Пожалуйста, введите положительное значение радиуса: ");
-        return checkValue(scanner);
-    }
-
-    private static double checkValue(Scanner scanner) {
-        try {
-            if(!scanner.hasNextDouble()) {
-                throw new UnacceptableValueException("Введена строка вместо числового значения");
-            }
-            double value = scanner.nextDouble();
-            if (value <= 0) {
-                throw new UnacceptableValueException("Введено неположительное значение радиуса");
-            } return value;
-        } catch (UnacceptableValueException e) {
-            throw new RuntimeException(e);
-        }
+        return InputNumberFactory.getPositiveDouble(scanner);
     }
 
     private static double findCircleLength(double radius) {
@@ -50,7 +36,7 @@ public class Task09 {
     }
 
     private static void printReport(double lengthCircle, double areaCircle) {
-        System.out.printf("Длина окружности составляет %f\n", lengthCircle);
-        System.out.printf("Площадь круга составляет %f", areaCircle);
+        System.out.printf("Длина окружности составляет %.4f\n", lengthCircle);
+        System.out.printf("Площадь круга составляет %.4f", areaCircle);
     }
 }

@@ -1,6 +1,6 @@
 package com.loiko.alex.lesson01;
 
-import com.loiko.alex.lesson01.exception.NotNumberException;
+import com.loiko.alex.lesson01.util.InputNumberFactory;
 
 import java.util.Scanner;
 
@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class Task08 {
 
-    private static final String FUNCTION_VALUE = "Значение функции %f ";
+    private static final String FUNCTION_VALUE = "Значение функции %.4f ";
 
     public static void main(String[] args) {
         double value = readValue();
@@ -26,18 +26,7 @@ public class Task08 {
     private static double readValue() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите значение x: ");
-        try {
-            if (isNotNumber(scanner)) {
-                throw new NotNumberException("Было введено не число");
-            }
-            return scanner.nextDouble();
-        } catch (NotNumberException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static boolean isNotNumber(Scanner scanner) {
-        return !scanner.hasNextDouble();
+        return InputNumberFactory.getDouble(scanner);
     }
 
     private static double calculateFunctionSmallXValue(double xValue) {

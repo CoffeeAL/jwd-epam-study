@@ -1,6 +1,6 @@
 package com.loiko.alex.lesson01;
 
-import com.loiko.alex.lesson01.exception.UnacceptableValueException;
+import com.loiko.alex.lesson01.util.InputNumberFactory;
 
 import java.util.Scanner;
 
@@ -16,27 +16,16 @@ import java.util.Scanner;
 public class Task03 {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите площадь внешнего квадрата: ");
-        double bigSquareArea = getBigSquareValue(scanner);
+        double bigSquareArea = readInputValue();
         double radius = findRadius(bigSquareArea);
         double smallSquareArea = findSmallSquareArea(radius);
         printReport(bigSquareArea, smallSquareArea);
     }
 
-    private static double getBigSquareValue(Scanner scanner) {
-        try {
-            if (!isValidValue(scanner)) {
-                throw new UnacceptableValueException("Введена строка вместо числа");
-            }
-            return scanner.nextDouble();
-        } catch (UnacceptableValueException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static boolean isValidValue(Scanner scanner) {
-        return (scanner.hasNextInt() || scanner.hasNextDouble()) && scanner.nextDouble() > 0;
+    private static double readInputValue() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите площадь внешнего квадрата: ");
+        return InputNumberFactory.getPositiveDouble(scanner);
     }
 
     private static double findRadius(double area) {
@@ -48,7 +37,10 @@ public class Task03 {
     }
 
     private static void printReport(double bigSquareArea, double smallSquareArea) {
-        System.out.printf("Площадь квадрата, вписанного в окружность, составляет %f\n", smallSquareArea);
-        System.out.printf("Площадь большого квадрата больше площади меньшего квадрата в %f раз", bigSquareArea / smallSquareArea);
+        System.out.printf("Площадь квадрата, вписанного в окружность, составляет %.4f\n", smallSquareArea);
+        /*площадь вписанного в окружность квадрата всегда в 2 раза меньше площади квадрата,
+        описанного вокруг той же окружности*/
+        System.out.printf("Площадь внешнего квадрата больше площади внутреннего квадрата в %.0f раза",
+                bigSquareArea / smallSquareArea);
     }
 }

@@ -1,7 +1,6 @@
 package com.loiko.alex.lesson01;
 
-import com.loiko.alex.lesson01.exception.NotMonthException;
-import com.loiko.alex.lesson01.util.CheckInputNumber;
+import com.loiko.alex.lesson01.util.InputNumberFactory;
 
 import java.util.Scanner;
 
@@ -22,33 +21,24 @@ public class Task02 {
     private static final int FEBRUARY_LEAP = 29;
     private static final int SHORT_MONTH = 30;
     private static final int LONG_MONTH = 31;
+    private static final int MONTHS_IN_YEAR = 12;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Пожалуйста, введите год: ");
         int year = getYearValue(scanner);
-        System.out.print("Пожалуйста, введите номер месяца: ");
         int month = getMonthValue(scanner);
         int amountDays = findAmountDays(year, month);
         printReport(amountDays);
     }
 
     private static int getYearValue(Scanner scanner) {
-        CheckInputNumber.checkInputInteger(scanner);
-        return scanner.nextInt();
+        System.out.print("Пожалуйста, введите год: ");
+        return InputNumberFactory.getPositiveInt(scanner);
     }
 
     private static int getMonthValue(Scanner scanner) {
-        CheckInputNumber.checkInputInteger(scanner);
-        try {
-            int month = scanner.nextInt();
-            if (month < 1 || month > 12) {
-                throw new NotMonthException("Месяца с таким порядковым номером не существует");
-            }
-            return month;
-        } catch (NotMonthException e) {
-            throw new RuntimeException(e);
-        }
+        System.out.print("Пожалуйста, введите номер месяца: ");
+        return InputNumberFactory.getLimitInt(scanner, 1, MONTHS_IN_YEAR);
     }
 
     private static int findAmountDays(int year, int month) {
@@ -68,7 +58,9 @@ public class Task02 {
             return true;
         } else if (year % 100 == 0) {
             return false;
-        } else return year % 4 == 0;
+        } else {
+            return year % 4 == 0;
+        }
     }
 
     private static boolean isLongMonth(int month) {

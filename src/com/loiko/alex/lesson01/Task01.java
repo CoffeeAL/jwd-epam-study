@@ -1,7 +1,6 @@
 package com.loiko.alex.lesson01;
 
-import com.loiko.alex.lesson01.exception.UnacceptableValueException;
-import com.loiko.alex.lesson01.util.CheckInputNumber;
+import com.loiko.alex.lesson01.util.InputNumberFactory;
 
 import java.util.Scanner;
 
@@ -15,6 +14,9 @@ import java.util.Scanner;
  */
 public class Task01 {
 
+    private static final int MIN_DIGIT = 0;
+    private static final int MAX_DIGIT = 9;
+
     public static void main(String[] args) {
         int sourceValue = getInputValue();
         int lastDigitTargetValue = findTargetNumberLastDigit(sourceValue);
@@ -24,16 +26,7 @@ public class Task01 {
     private static int getInputValue() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Пожалуйста, введите цифру: ");
-        CheckInputNumber.checkInputInteger(scanner);
-        try {
-            int input = scanner.nextInt();
-            if (input < 0 || input > 9) {
-                throw new UnacceptableValueException("Введено отрицательное или неоднозначное число");
-            }
-            return input;
-        } catch (UnacceptableValueException e) {
-            throw new RuntimeException(e);
-        }
+        return InputNumberFactory.getLimitInt(scanner, MIN_DIGIT, MAX_DIGIT);
     }
 
     private static int findTargetNumberLastDigit(int digit) {
@@ -41,6 +34,6 @@ public class Task01 {
     }
 
     private static void printReport(int result) {
-        System.out.printf("Последняя цифра квадрата числа, заканчивающегося на исходную цифру, - %d", result);
+        System.out.printf("Последняя цифра квадрата числа, заканчивающегося на исходную цифру: %d", result);
     }
 }

@@ -1,6 +1,6 @@
 package com.loiko.alex.lesson01.task07;
 
-import com.loiko.alex.lesson01.exception.UnacceptableValueException;
+import com.loiko.alex.lesson01.util.InputNumberFactory;
 
 import java.util.Scanner;
 
@@ -16,11 +16,7 @@ public class Task07 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        readInput(scanner);
-    }
-
-    private static void readInput(Scanner scanner) {
-        Point pointA = createPoint("А", scanner);
+        Point pointA = createPoint("A", scanner);
         Point pointB = createPoint("B", scanner);
         double aDistance = findDistance(pointA.getX(), pointA.getY());
         double bDistance = findDistance(pointB.getX(), pointB.getY());
@@ -29,20 +25,10 @@ public class Task07 {
 
     private static Point createPoint(String namePoint, Scanner scanner) {
         System.out.printf("Введите координату x точки %s: ", namePoint);
-        double x = checkInput(scanner);
+        double x = InputNumberFactory.getDouble(scanner);
         System.out.printf("Введите координату у точки %s: ", namePoint);
-        double y = checkInput(scanner);
+        double y = InputNumberFactory.getDouble(scanner);
         return new Point(x, y);
-    }
-
-    private static double checkInput(Scanner scanner) {
-        try {
-            if (!scanner.hasNextInt() && !scanner.hasNextDouble()) {
-                throw new UnacceptableValueException("Введена строка вместо числового значения");
-            } else return scanner.nextDouble();
-        } catch (UnacceptableValueException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private static double findDistance(double x, double y) {
@@ -51,9 +37,9 @@ public class Task07 {
 
     private static void printReport(double distanceA, double distanceB) {
         if (distanceA > distanceB) {
-            System.out.printf("Точка В ближе к началу координат на %f", distanceA - distanceB);
+            System.out.printf("Точка В ближе к началу координат на %.4f", distanceA - distanceB);
         } else if (distanceA < distanceB) {
-            System.out.printf("Точка А ближе к началу координат на %f", distanceB - distanceA);
+            System.out.printf("Точка А ближе к началу координат на %.4sdf", distanceB - distanceA);
         } else {
             System.out.println("Точки А и В равноудалены от начала координат");
         }

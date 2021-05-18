@@ -1,7 +1,6 @@
 package com.loiko.alex.lesson01;
 
-import com.loiko.alex.lesson01.exception.NotNumberException;
-import com.loiko.alex.lesson01.exception.UnacceptableValueException;
+import com.loiko.alex.lesson01.util.InputNumberFactory;
 
 import java.util.Scanner;
 
@@ -20,46 +19,41 @@ public class Task10 {
     private static final String START_MESSAGE = "Введите начало интервала: ";
     private static final String FINISH_MESSAGE = "Введите конец интервала: ";
     private static final String STEP = "Введите шаг: ";
+    private static double start;
+    private static double end;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        double start = readValues(scanner, START_MESSAGE);
-        double end = readValues(scanner, FINISH_MESSAGE);
-        compareValues(start, end);
+        getValidInterval(scanner);
         double step = readValues(scanner, STEP);
         printReport(start, end, step);
     }
 
+    private static void getValidInterval(Scanner scanner) {
+        do {
+            start = readValues(scanner, START_MESSAGE);
+            end = readValues(scanner, FINISH_MESSAGE);
+        } while (!isValidInterval(start, end));
+    }
+
     private static double readValues(Scanner scanner, String message) {
         System.out.print(message);
-        return checkValue(scanner);
+        return InputNumberFactory.getDouble(scanner);
     }
 
-    private static void compareValues(double start, double end) {
-        try {
-            if (end < start) {
-                throw new UnacceptableValueException("Второе число должно быть не меньше, чем первое");
-            }
-        } catch (UnacceptableValueException e) {
-            throw new RuntimeException(e);
+    private static boolean isValidInterval(double start, double end) {
+        if (start > end) {
+            System.out.println("Значение начала интервала не должно превышать значение конца интервала");
+            return false;
         }
-    }
-
-    private static double checkValue(Scanner scanner) {
-        try {
-            if (!scanner.hasNextDouble()) {
-                throw new NotNumberException("Введено не число");
-            }
-            return scanner.nextDouble();
-        } catch (NotNumberException e) {
-            throw new RuntimeException(e);
-        }
+        System.out.println("Интервал успешно задан");
+        return true;
     }
 
     private static void printReport(double start, double end, double step) {
         System.out.println("Угол в рад --- Тангенс угла");
         for (; start <= end; start += step) {
-            System.out.println(start + " --- " + Math.tan(start));
+            System.out.printf(start + " --- %.4f\n", Math.tan(start));
         }
     }
 }
