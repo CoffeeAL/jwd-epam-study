@@ -2,7 +2,6 @@ package com.loiko.alex.lesson01;
 
 import com.loiko.alex.lesson01.util.InputNumberFactory;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -17,6 +16,7 @@ import java.util.Scanner;
 public class Task04 {
 
     private static int COUNTER = 0;
+    private static int AMOUNT_NUMBERS = 4;
 
     public static void main(String[] args) {
         int[] values = readInput();
@@ -26,8 +26,8 @@ public class Task04 {
 
     private static int[] readInput() {
         Scanner scanner = new Scanner(System.in);
-        int[] values = new int[4];
-        for (int i = 0; i < 4; i++) {
+        int[] values = new int[AMOUNT_NUMBERS];
+        for (int i = 0; i < values.length; i++) {
             System.out.print("Введите целое число: ");
             values[i] = InputNumberFactory.getInt(scanner);
             counterAction(values[i]);
@@ -42,7 +42,18 @@ public class Task04 {
     }
 
     private static void printResultArray(int[] array) {
-        System.out.println("Полученный массив целых чисел: " + Arrays.toString(array));
+        /*с использованиеем класса java.util.Arrays
+        System.out.println("Полученный массив целых чисел: " + Arrays.toString(array));*/
+        System.out.print("Полученный массив целых чисел: ");
+        for (int i = 0; i < array.length; i++) {
+            if (i == 0) {
+                System.out.printf("{%s, ", array[i]);
+            } else if (i == array.length - 1) {
+                System.out.printf("%s}\n", array[i]);
+            } else {
+                System.out.printf("%s, ", array[i]);
+            }
+        }
     }
 
     private static void printReport(int counter) {

@@ -46,7 +46,7 @@ public class Task02 {
             return LONG_MONTH;
         } else if (isShortMonth(month)) {
             return SHORT_MONTH;
-        } else if (month == 2 && isLeapYear(year)) {
+        } else if (isLeapYear(year)) {
             return FEBRUARY_LEAP;
         } else {
             return FEBRUARY;
@@ -64,6 +64,9 @@ public class Task02 {
     }
 
     private static boolean isLongMonth(int month) {
+        /*с использованием класса java.util.IntStream
+        int[] longMonths = {1, 3, 5, 7, 8, 10, 12};
+        return IntStream.of(longMonths).anyMatch(x -> x == month);*/
         return month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12;
     }
 

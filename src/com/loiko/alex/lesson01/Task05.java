@@ -24,15 +24,11 @@ public class Task05 {
 
     private static int readInput() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Пожалуйста, введите целое число: ");
-        return InputNumberFactory.getInt(scanner);
+        System.out.print("Пожалуйста, введите целое положительное число: ");
+        return InputNumberFactory.getPositiveInt(scanner);
     }
 
     private static boolean isAssertionTrue(int value) {
-        if (value == 0) {
-            return false;
-        }
-        value = castToPositiveValue(value);
         int sum = 0;
         for (int i = 1; i < value; i++) {
             if (value % i == 0) {
@@ -40,10 +36,6 @@ public class Task05 {
             }
         }
         return sum == value;
-    }
-
-    private static int castToPositiveValue(int value) {
-        return Math.abs(value);
     }
 
     private static void printReport(int value) {

@@ -24,7 +24,7 @@ public final class InputNumberFactory {
             System.out.print("Введена строка или вещественное число. Пожалуйста, введите целое положительное число: ");
             scanner.next();
         }
-        int value = scanner.nextInt();
+        int value = getInt(scanner);
         if (value <= 0) {
             System.out.print("Число должно быть больше положительным. Попробуйте ещё раз: ");
             value = getPositiveInt(scanner);
@@ -33,11 +33,7 @@ public final class InputNumberFactory {
     }
 
     public static int getLimitInt(Scanner scanner, int limit) {
-        while (!scanner.hasNextInt()) {
-            System.out.print("Введена строка или вещественное число. Пожалуйста, введите целое число: ");
-            scanner.next();
-        }
-        int value = scanner.nextInt();
+        int value = getInt(scanner);
         if (value <= 0 || value > limit) {
             System.out.printf("Число должно быть положительным и не превышать предел %d. Попробуйте ещё раз: ",
                     limit);
@@ -47,13 +43,9 @@ public final class InputNumberFactory {
     }
 
     public static int getLimitInt(Scanner scanner, int lowerLimit, int upperLimit) {
-        while (!scanner.hasNextInt()) {
-            System.out.print("Введена строка или вещественное число. Пожалуйста, введите целое число: ");
-            scanner.next();
-        }
-        int value = scanner.nextInt();
+        int value = getInt(scanner);
         if (value < lowerLimit || value > upperLimit) {
-            System.out.printf("Число должно быть больше %d и не превышать предел %d. Попробуйте ещё раз: ",
+            System.out.printf("Число должно быть не меньше %d и не больше %d. Попробуйте ещё раз: ",
                     lowerLimit, upperLimit);
             value = getLimitInt(scanner, lowerLimit, upperLimit);
         }
@@ -69,11 +61,7 @@ public final class InputNumberFactory {
     }
 
     public static double getPositiveDouble(Scanner scanner) {
-        while (!scanner.hasNextDouble()) {
-            System.out.print("Введена строка. Пожалуйста, введите число: ");
-            scanner.next();
-        }
-        double value = scanner.nextDouble();
+        double value = getDouble(scanner);
         if (value <= 0) {
             System.out.print("Число должно быть положительным. Попробуйте ещё раз: ");
             value = getPositiveDouble(scanner);

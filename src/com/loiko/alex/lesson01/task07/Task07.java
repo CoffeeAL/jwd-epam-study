@@ -24,11 +24,14 @@ public class Task07 {
     }
 
     private static Point createPoint(String namePoint, Scanner scanner) {
-        System.out.printf("Введите координату x точки %s: ", namePoint);
-        double x = InputNumberFactory.getDouble(scanner);
-        System.out.printf("Введите координату у точки %s: ", namePoint);
-        double y = InputNumberFactory.getDouble(scanner);
+        double x = readInput(namePoint, scanner);
+        double y = readInput(namePoint, scanner);
         return new Point(x, y);
+    }
+
+    private static double readInput(String namePoint, Scanner scanner) {
+        System.out.printf("Введите координату x точки %s: ", namePoint);
+        return InputNumberFactory.getDouble(scanner);
     }
 
     private static double findDistance(double x, double y) {

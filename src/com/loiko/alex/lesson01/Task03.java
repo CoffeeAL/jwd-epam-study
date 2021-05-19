@@ -39,7 +39,7 @@ public class Task03 {
     private static void printReport(double bigSquareArea, double smallSquareArea) {
         System.out.printf("Площадь квадрата, вписанного в окружность, составляет %.4f\n", smallSquareArea);
         /*площадь вписанного в окружность квадрата всегда в 2 раза меньше площади квадрата,
-        описанного вокруг той же окружности*/
+        в который вписана та же окружность*/
         System.out.printf("Площадь внешнего квадрата больше площади внутреннего квадрата в %.0f раза",
                 bigSquareArea / smallSquareArea);
     }
