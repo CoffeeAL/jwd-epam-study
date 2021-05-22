@@ -1,7 +1,6 @@
-package com.loiko.alex.lesson01;
+package by.epamtc.loiko.lesson01;
 
-import com.loiko.alex.lesson01.util.InputNumberFactory;
-
+import by.epamtc.loiko.lesson01.util.InputNumberFactory;
 import java.util.Scanner;
 
 /**
@@ -23,22 +22,25 @@ public class Task08 {
         printReport(value);
     }
 
-    private static double readValue() {
+    public static double readValue() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите значение x: ");
-        return InputNumberFactory.getDouble(scanner);
+        double inputValue = InputNumberFactory.inputDoubleValue(scanner);
+        return inputValue;
     }
 
-    private static double calculateFunctionSmallXValue(double xValue) {
-        return 1 / (Math.pow(xValue, 3) - 6);
+    public static double calculateFunctionSmallXValue(double xValue) {
+        double result = 1 / (Math.pow(xValue, 3) - 6);
+        return result;
     }
 
-    private static double calculateFunctionLargeXValue(double xValue) {
-        return -Math.pow(xValue, 2) + 3 * xValue + 9;
+    public static double calculateFunctionLargeXValue(double xValue) {
+        double result = -Math.pow(xValue, 2) + 3 * xValue + 9;
+        return result;
     }
 
-    private static void printReport(double value) {
-        System.out.printf(FUNCTION_VALUE, value < 3
+    public static void printReport(double value) {
+        System.out.printf(FUNCTION_VALUE, (value < 3)
                 ? calculateFunctionSmallXValue(value)
                 : calculateFunctionLargeXValue(value));
     }

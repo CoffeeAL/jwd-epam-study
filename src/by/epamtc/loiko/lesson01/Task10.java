@@ -1,7 +1,8 @@
-package com.loiko.alex.lesson01;
+package by.epamtc.loiko.lesson01;
 
-import com.loiko.alex.lesson01.util.InputNumberFactory;
-
+import by.epamtc.loiko.lesson01.exception.IllegalIntervalException;
+import by.epamtc.loiko.lesson01.exception.NegativeValueException;
+import by.epamtc.loiko.lesson01.util.InputNumberFactory;
 import java.util.Scanner;
 
 /**
@@ -24,24 +25,28 @@ public class Task10 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        getValidInterval(scanner);
+        inputValidInterval(scanner);
         double step = readValues(scanner, STEP);
-        printReport(start, end, step);
+        try {
+            printReport(start, end, step);
+        } catch (NegativeValueException | IllegalIntervalException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
-    private static void getValidInterval(Scanner scanner) {
+    public static void inputValidInterval(Scanner scanner) {
         do {
             start = readValues(scanner, START_MESSAGE);
             end = readValues(scanner, FINISH_MESSAGE);
         } while (!isValidInterval(start, end));
     }
 
-    private static double readValues(Scanner scanner, String message) {
+    public static double readValues(Scanner scanner, String message) {
         System.out.print(message);
-        return InputNumberFactory.getDouble(scanner);
+        return InputNumberFactory.inputDoubleValue(scanner);
     }
 
-    private static boolean isValidInterval(double start, double end) {
+    public static boolean isValidInterval(double start, double end) {
         if (start > end) {
             System.out.println("Значение начала интервала не должно превышать значение конца интервала");
             return false;
@@ -50,10 +55,17 @@ public class Task10 {
         return true;
     }
 
-    private static void printReport(double start, double end, double step) {
+    public static void printReport(double start, double end, double step)
+            throws NegativeValueException, IllegalIntervalException {
+        if (step <= 0) {
+            throw new NegativeValueException("Шаг должен быть положительным числом.");
+        }
+        if (start > end) {
+            throw new IllegalIntervalException("Значение начала интервала не должно превышать значение конца интервала.");
+        }
         System.out.println("Угол в рад --- Тангенс угла");
         for (; start <= end; start += step) {
-            System.out.printf(start + " --- %.4f\n", Math.tan(start));
+            System.out.printf("%.4f --- %.4f\n", start, Math.tan(start));
         }
     }
 }

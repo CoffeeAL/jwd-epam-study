@@ -1,7 +1,7 @@
-package com.loiko.alex.lesson01;
+package by.epamtc.loiko.lesson01;
 
-import com.loiko.alex.lesson01.util.InputNumberFactory;
-
+import by.epamtc.loiko.lesson01.exception.NegativeValueException;
+import by.epamtc.loiko.lesson01.util.InputNumberFactory;
 import java.util.Scanner;
 
 /**
@@ -19,16 +19,24 @@ public class Task05 {
 
     public static void main(String[] args) {
         int value = readInput();
-        printReport(value);
+        try {
+            printReport(value);
+        } catch (NegativeValueException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
-    private static int readInput() {
+    public static int readInput() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Пожалуйста, введите целое положительное число: ");
-        return InputNumberFactory.getPositiveInt(scanner);
+        int inputValue = InputNumberFactory.inputPositiveIntValue(scanner);
+        return inputValue;
     }
 
-    private static boolean isAssertionTrue(int value) {
+    public static boolean isAssertionTrue(int value) throws NegativeValueException {
+        if (value <= 0) {
+            throw new NegativeValueException("Значение числа должно быть положительным.");
+        }
         int sum = 0;
         for (int i = 1; i < value; i++) {
             if (value % i == 0) {
@@ -38,7 +46,7 @@ public class Task05 {
         return sum == value;
     }
 
-    private static void printReport(int value) {
+    public static void printReport(int value) throws NegativeValueException {
         System.out.println(isAssertionTrue(value));
     }
 }

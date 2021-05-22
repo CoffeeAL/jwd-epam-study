@@ -1,7 +1,6 @@
-package com.loiko.alex.lesson01;
+package by.epamtc.loiko.lesson01;
 
-import com.loiko.alex.lesson01.util.InputNumberFactory;
-
+import by.epamtc.loiko.lesson01.util.InputNumberFactory;
 import java.util.Scanner;
 
 /**
@@ -24,24 +23,24 @@ public class Task04 {
         printReport(COUNTER);
     }
 
-    private static int[] readInput() {
+    public static int[] readInput() {
         Scanner scanner = new Scanner(System.in);
         int[] values = new int[AMOUNT_NUMBERS];
         for (int i = 0; i < values.length; i++) {
             System.out.print("Введите целое число: ");
-            values[i] = InputNumberFactory.getInt(scanner);
-            counterAction(values[i]);
+            values[i] = InputNumberFactory.inputIntValue(scanner);
+            checkCounterIncrement(values[i]);
         }
         return values;
     }
 
-    private static void counterAction(int value) {
+    public static void checkCounterIncrement(int value) {
         if (value % 2 == 0) {
             COUNTER++;
         }
     }
 
-    private static void printResultArray(int[] array) {
+    public static void printResultArray(int[] array) {
         /*с использованиеем класса java.util.Arrays
         System.out.println("Полученный массив целых чисел: " + Arrays.toString(array));*/
         System.out.print("Полученный массив целых чисел: ");
@@ -56,7 +55,7 @@ public class Task04 {
         }
     }
 
-    private static void printReport(int counter) {
+    public static void printReport(int counter) {
         System.out.println(counter > 1);
     }
 }
