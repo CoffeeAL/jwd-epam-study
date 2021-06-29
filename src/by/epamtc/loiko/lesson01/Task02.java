@@ -4,6 +4,7 @@ import by.epamtc.loiko.lesson01.exception.IllegalIntervalException;
 import by.epamtc.loiko.lesson01.exception.IllegalYearMonthNumberException;
 import by.epamtc.loiko.lesson01.exception.NegativeValueException;
 import by.epamtc.loiko.lesson01.util.InputNumberFactory;
+
 import java.util.Scanner;
 
 /**
@@ -32,10 +33,10 @@ public class Task02 {
         try {
             month = inputMonthValue(scanner);
             amountDays = findAmountDays(year, month);
+            printReport(amountDays);
         } catch (IllegalYearMonthNumberException | NegativeValueException | IllegalIntervalException e) {
             throw new RuntimeException(e.getMessage());
         }
-        printReport(amountDays);
     }
 
     public static int inputYearValue(Scanner scanner) {
@@ -73,7 +74,10 @@ public class Task02 {
         }
     }
 
-    public static void printReport(int daysAmount) {
+    public static void printReport(int daysAmount) throws IllegalIntervalException {
+        if (daysAmount < 1 || daysAmount > 31) {
+            throw new IllegalIntervalException("Ни в каком месяце не может быть такого количества дней.");
+        }
         System.out.printf("Количество дней в месяце: %s", daysAmount);
     }
 }

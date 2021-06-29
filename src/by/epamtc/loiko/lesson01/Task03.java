@@ -3,6 +3,7 @@ package by.epamtc.loiko.lesson01;
 import by.epamtc.loiko.lesson01.exception.IllegalIntervalException;
 import by.epamtc.loiko.lesson01.exception.NegativeValueException;
 import by.epamtc.loiko.lesson01.util.InputNumberFactory;
+
 import java.util.Scanner;
 
 /**

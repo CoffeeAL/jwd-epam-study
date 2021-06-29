@@ -1,13 +1,18 @@
 package by.epamtc.loiko.lesson01.task07;
 
+import java.io.Serializable;
+
 /**
  * @author Alexey Loiko
  * @project jwd-epam-study
  */
-class Point {
+class Point implements Serializable {
 
     private double x;
     private double y;
+
+    Point() {
+    }
 
     Point(double x, double y) {
         this.x = x;

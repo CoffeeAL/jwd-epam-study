@@ -1,6 +1,8 @@
 package by.epamtc.loiko.lesson01;
 
+import by.epamtc.loiko.lesson01.exception.IllegalIntervalException;
 import by.epamtc.loiko.lesson01.util.InputNumberFactory;
+
 import java.util.Scanner;
 
 /**
@@ -16,7 +18,11 @@ public class Task01 {
     public static void main(String[] args) {
         int sourceValue = inputValue();
         int lastDigitTargetValue = findTargetNumberLastDigit(sourceValue);
-        printReport(lastDigitTargetValue);
+        try {
+            printReport(lastDigitTargetValue);
+        } catch (IllegalIntervalException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public static int inputValue() {
@@ -31,7 +37,10 @@ public class Task01 {
         return targetNumberLastDigit;
     }
 
-    public static void printReport(int targetLastDigit) {
+    public static void printReport(int targetLastDigit) throws IllegalIntervalException {
+        if (targetLastDigit < 0 || targetLastDigit > 9) {
+            throw new IllegalIntervalException("Принимаемое число должно быть неотрицательным и однозначным.");
+        }
         System.out.printf("Последняя цифра квадрата числа, заканчивающегося на исходную цифру: %d", targetLastDigit);
     }
 }

@@ -3,6 +3,7 @@ package by.epamtc.loiko.lesson01;
 import by.epamtc.loiko.lesson01.exception.IllegalIntervalException;
 import by.epamtc.loiko.lesson01.exception.NegativeValueException;
 import by.epamtc.loiko.lesson01.util.InputNumberFactory;
+
 import java.util.Scanner;
 
 /**
@@ -48,7 +49,7 @@ public class Task10 {
 
     public static boolean isValidInterval(double start, double end) {
         if (start > end) {
-            System.out.println("Значение начала интервала не должно превышать значение конца интервала");
+            System.out.println("Значение начала интервала не должно превышать значение конца интервала.");
             return false;
         }
         System.out.println("Интервал успешно задан");
