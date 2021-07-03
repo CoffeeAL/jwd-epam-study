@@ -1,5 +1,6 @@
 package by.epamtc.loiko.lesson01;
 
+import by.epamtc.loiko.lesson01.exception.NullArrayException;
 import by.epamtc.loiko.lesson01.util.InputNumberFactory;
 
 import java.util.Scanner;
@@ -20,7 +21,11 @@ public class Task04 {
 
     public static void main(String[] args) {
         int[] values = readInput();
-        printResultArray(values);
+        try {
+            printResultArray(values);
+        } catch (NullArrayException e) {
+            throw new RuntimeException(e.getMessage());
+        }
         printReport(COUNTER);
     }
 
@@ -41,7 +46,10 @@ public class Task04 {
         }
     }
 
-    public static void printResultArray(int[] array) {
+    public static void printResultArray(int[] array) throws NullArrayException {
+        if (array == null) {
+            throw new NullArrayException("Массив отсутствует.");
+        }
         /*с использованиеем класса java.util.Arrays
         System.out.println("Полученный массив целых чисел: " + Arrays.toString(array));*/
         System.out.print("Полученный массив целых чисел: ");
@@ -57,6 +65,17 @@ public class Task04 {
     }
 
     public static void printReport(int counter) {
-        System.out.println(counter > 1);
+        System.out.print(counter > 1);
+    }
+
+    /**
+     * for JUnit-tests
+     */
+    public static int getCOUNTER() {
+        return COUNTER;
+    }
+
+    public static void setCOUNTER(int value) {
+        COUNTER = value;
     }
 }

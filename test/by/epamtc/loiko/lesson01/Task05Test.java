@@ -12,16 +12,16 @@ public class Task05Test {
 
     @Test(expected = NegativeValueException.class)
     public void checkNegativeNumber() throws NegativeValueException {
-        Task05.isAssertionTrue(-5);
+        Task05.isPerfectNumber(-5);
     }
 
     @Test
     public void checkPerfectNumber() throws NegativeValueException {
-        Assert.assertTrue(Task05.isAssertionTrue(6));
+        Assert.assertTrue(Task05.isPerfectNumber(6));
     }
 
     @Test
     public void checkNotPerfectNumber() throws NegativeValueException {
-        Assert.assertFalse(Task05.isAssertionTrue(5));
+        Assert.assertFalse(Task05.isPerfectNumber(5));
     }
 }

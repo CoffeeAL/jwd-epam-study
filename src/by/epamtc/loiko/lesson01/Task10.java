@@ -44,7 +44,8 @@ public class Task10 {
 
     public static double readValues(Scanner scanner, String message) {
         System.out.print(message);
-        return InputNumberFactory.inputDoubleValue(scanner);
+        double value = InputNumberFactory.inputDoubleValue(scanner);
+        return value;
     }
 
     public static boolean isValidInterval(double start, double end) {

@@ -33,7 +33,7 @@ public class Task05 {
         return inputValue;
     }
 
-    public static boolean isAssertionTrue(int value) throws NegativeValueException {
+    public static boolean isPerfectNumber(int value) throws NegativeValueException {
         if (value <= 0) {
             throw new NegativeValueException("Значение числа должно быть положительным.");
         }
@@ -47,6 +47,6 @@ public class Task05 {
     }
 
     public static void printReport(int value) throws NegativeValueException {
-        System.out.println(isAssertionTrue(value));
+        System.out.println(isPerfectNumber(value));
     }
 }

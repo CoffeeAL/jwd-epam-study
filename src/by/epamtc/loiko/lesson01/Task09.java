@@ -48,7 +48,7 @@ public class Task09 {
 
     public static void checkRadius(double radius) throws NegativeValueException {
         if (radius <= 0) {
-            throw new NegativeValueException("Получено неположительное значение радиуса.");
+            throw new NegativeValueException("Значение радиуса должно быть положительным.");
         }
     }
 

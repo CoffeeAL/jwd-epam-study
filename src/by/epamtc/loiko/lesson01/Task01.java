@@ -33,8 +33,8 @@ public class Task01 {
     }
 
     public static int findTargetNumberLastDigit(int sourceNumber) {
-        int targetNumberLastDigit = (int) Math.pow(sourceNumber, 2) % 10;
-        return targetNumberLastDigit;
+        int lastDigit = (int) Math.pow(sourceNumber, 2) % 10;
+        return lastDigit;
     }
 
     public static void printReport(int targetLastDigit) throws IllegalIntervalException {

@@ -28,11 +28,9 @@ public class Task02 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int year = inputYearValue(scanner);
-        int month;
-        int amountDays;
         try {
-            month = inputMonthValue(scanner);
-            amountDays = findAmountDays(year, month);
+            int month = inputMonthValue(scanner);
+            int amountDays = findAmountDays(year, month);
             printReport(amountDays);
         } catch (IllegalYearMonthNumberException | NegativeValueException | IllegalIntervalException e) {
             throw new RuntimeException(e.getMessage());
@@ -55,10 +53,7 @@ public class Task02 {
         if (year <= 0 || month <= 0 || month > 12) {
             throw new IllegalYearMonthNumberException("Некорректное значение года или месяца.");
         }
-        if (isLeapYear(year) && month == 2) {
-            return DAYS_IN_FEBRUARY_LEAP;
-        }
-        return AMOUNT_DAYS[month - 1];
+        return isLeapYear(year) && month == 2 ? DAYS_IN_FEBRUARY_LEAP : AMOUNT_DAYS[month - 1];
     }
 
     public static boolean isLeapYear(int year) throws IllegalYearMonthNumberException {
@@ -67,11 +62,7 @@ public class Task02 {
         }
         if (year % 400 == 0) {
             return true;
-        } else if (year % 100 == 0) {
-            return false;
-        } else {
-            return year % 4 == 0;
-        }
+        } else return year % 100 == 0 ? false : year % 4 == 0;
     }
 
     public static void printReport(int daysAmount) throws IllegalIntervalException {

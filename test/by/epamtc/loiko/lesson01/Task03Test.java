@@ -9,7 +9,7 @@ import org.junit.Test;
  * @author Alexey Loiko
  * @project jwd-epam-study
  */
-public class Test03Test {
+public class Task03Test {
 
     @Test
     public void checkRadius() throws NegativeValueException {

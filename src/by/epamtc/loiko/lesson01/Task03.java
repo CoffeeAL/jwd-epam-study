@@ -19,11 +19,9 @@ public class Task03 {
 
     public static void main(String[] args) {
         double bigSquareArea = readInputValue();
-        double radius;
-        double smallSquareArea;
         try {
-            radius = findRadius(bigSquareArea);
-            smallSquareArea = findSmallSquareArea(radius);
+            double radius = findRadius(bigSquareArea);
+            double smallSquareArea = findSmallSquareArea(radius);
             printReport(bigSquareArea, smallSquareArea);
         } catch (NegativeValueException | IllegalIntervalException e) {
             throw new RuntimeException(e.getMessage());
